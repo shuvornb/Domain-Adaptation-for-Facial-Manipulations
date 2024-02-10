@@ -3,12 +3,22 @@ With the advent and popularity of generative models such as GANs, synthetic imag
 
 ## Multi Source Domain Adaptation
 ### Dataset Structure
+For example- if source domains are `DeepFake`, `Face2Face` and target domain is `FaceSwap`, then a directory named `dataset` with three sub-directories are expected with corresponding image files. They are- `DeepFake`, `Face2Face`, and `FaceSwap`. Each of these sub-directories should have three more subdirectories- `train`, `test`, and `val`. `test` and `val` sub-directories should have two more sub-directories- `fake`, and `real`. `train` directory should have the similar structure [`fake`, `real`] for `DeepFake` and `Face2Face` i.e source domains. But for `FaceSwap`, `train` should have `labeled` and `unlabeled` sub-directories and under them [`fake`, `real`] sub-directories.
 
 ### How to Run
+Here are the instructions on how to train and test the model-
+1. Train the model-
+```
+python3 create_target_data.py
+```
+2. Test the model-
+```
+python3 multi_train.py
+```
 
 ## Single Source Domain Adaptation
 ### Dataset Structure
-For example- if source domain is `DF` and target domain is `FS`, then a folder named `source_data` with three folders are expected with corresponding image files. They are- `DF`, `FS`, `Pristine`.
+For example- if source domain is `DF` and target domain is `FS`, then a directory named `source_data` with three directories are expected with corresponding image files. They are- `DF`, `FS`, `Pristine`.
 ### How to Run
 Here are the instructions on how to train and test the model-
 1. Generate processed_data from source_data. The command expects 6 arguments. They are- `source_domain`, `target_domain`, `labeled_source_data_count`, `labeled_target_data_count`, `unlabeled_target_data_count`, `test_data_count`.
